@@ -1,9 +1,8 @@
 import { Text, Pressable, SafeAreaView } from "react-native";
 import React from "react";
-import { router } from "expo-router";
 import { useAuth } from "../../context/AuthContext";
 const Home = () => {
-  const {session} = useAuth();
+  const {user,signout} = useAuth();
   return (
     <SafeAreaView
       style={{
@@ -18,31 +17,33 @@ const Home = () => {
           fontWeight: 700,
           fontSize: 24,
           color:"black",
-          backgroundColor:'pink'
+          
         }}
       >
-        {session}
-        Home
+        Welcome {" "}
+        {user?.name} !
       </Text>
       <Pressable
         style={{
           paddingVertical: 10,
           paddingHorizontal: 15,
           borderRadius: 5,
-          backgroundColor: "blue",
+          backgroundColor: "red",
+          
         }}
-        onPress={() => {
-          router.push("/");
+        onPress={()=>{
+          signout();
         }}
       >
         <Text
           style={{
             color: "white",
             fontSize: 20,
+            fontWeight:700
           }}
         >
           
-          Index Page
+          Log out
         </Text>
       </Pressable>
     </SafeAreaView>
